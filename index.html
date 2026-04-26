@@ -1201,12 +1201,9 @@ function checkRoute() {
   if (client && client.active) {
     renderPublicPage(client);
     showView('public');
-  } else if (path === 'public' || path === '') {
-    renderPublicPage(clients[0]);
-    showView('public');
   } else {
-    renderPublicPage(clients[0]);
-    showView('public');
+    // Default: go to login
+    showView('login');
   }
 }
 
