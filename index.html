@@ -1543,17 +1543,6 @@ document.getElementById('public-page').addEventListener('dblclick', () => {
 });
 
 checkRoute();
-
-// Nav hint
-setTimeout(() => {
-  if (currentView === 'public') {
-    // Add subtle admin link
-    const hint = document.createElement('div');
-    hint.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:10';
-    hint.innerHTML = `<a href="#login" style="font-size:11px;color:var(--muted);text-decoration:none;opacity:0.5">Admin</a>`;
-    document.body.appendChild(hint);
-  }
-}, 1000);
 </script>
 </body>
 </html>
