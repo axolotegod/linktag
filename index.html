@@ -906,7 +906,7 @@
 <body>
 
 <!-- ===== PUBLIC PAGE ===== -->
-<div id="public-page" class="view">
+<div id="public-page" class="view active">
   <div class="public-card">
     <div class="public-logo-placeholder" id="pub-avatar">LT</div>
     <div class="public-name" id="pub-name">Demo Business</div>
@@ -937,7 +937,7 @@
 </div>
 
 <!-- ===== LOGIN ===== -->
-<div id="login-page" class="view active">
+<div id="login-page" class="view">
   <div class="login-card">
     <div class="login-logo">
       <div class="login-logo-icon">LT</div>
@@ -1149,7 +1149,7 @@
 
 <script>
 // ===== STATE =====
-let currentView = 'public';
+let currentView = 'login';
 let clients = JSON.parse(localStorage.getItem('lt_clients') || '[]');
 let editingClientId = null;
 let currentEditorSlug = null;
@@ -1189,8 +1189,7 @@ function showView(v) {
 
 // Check URL for slug
 function checkRoute() {
-  if (!window.location.hash) { showView('login'); return; }
-  const path = window.location.hash.replace('#', '');
+  const path = window.location.hash.replace('#', '') || 'login';
   if (path === 'login') { showView('login'); return; }
   if (path === 'admin') {
     const logged = sessionStorage.getItem('lt_logged');
@@ -1543,6 +1542,17 @@ document.getElementById('public-page').addEventListener('dblclick', () => {
 });
 
 checkRoute();
+
+// Nav hint
+setTimeout(() => {
+  if (currentView === 'public') {
+    // Add subtle admin link
+    const hint = document.createElement('div');
+    hint.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:10';
+    hint.innerHTML = `<a href="#login" style="font-size:11px;color:var(--muted);text-decoration:none;opacity:0.5">Admin</a>`;
+    document.body.appendChild(hint);
+  }
+}, 1000);
 </script>
 </body>
 </html>
