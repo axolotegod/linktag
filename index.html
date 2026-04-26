@@ -1189,7 +1189,7 @@ function showView(v) {
 
 // Check URL for slug
 function checkRoute() {
-  const path = window.location.hash.replace('#', '') || 'public';
+const path = window.location.hash.replace('#', '') || 'login';
   if (path === 'login') { showView('login'); return; }
   if (path === 'admin') {
     const logged = sessionStorage.getItem('lt_logged');
